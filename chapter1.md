@@ -31,3 +31,9 @@ Why do we need object sub-types?
 
 The primitive value `"I am a string"`is not an object, it's a primitive literal and immutable value. To perform operations on it, such as checking its length, accessing its individual character contents, etc, a`String`object is required.the language automatically coerces a`"string"`primitive to a`String`object when necessary, which means you almost never need to explicitly create the Object form.
 
+How to remember?
+
+Excluding from the self-defined object, we can always use `typeof` first to check out the primary types and then use `instanceof` to find out its object sub-types.
+
+
+
