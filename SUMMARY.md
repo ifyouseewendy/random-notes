@@ -1,5 +1,5 @@
 # Summary
 
 * [Introduction](README.md)
-* [Type in JS](chapter1.md)
+* [Objects in JS](chapter1.md)
 
