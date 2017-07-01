@@ -1,6 +1,6 @@
 # Objects in JS
 
-Source: [You Don't Know JS: this & Object Prototypes - Chapter 3: Objects](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md)
+Source: [You Don't Know JS: this & Object Prototypes - Chapter 3: Objects](https://github.com/getify/You-Dont-Know-JS/blob/master/this %26 object prototypes/ch3.md)
 
 Date: 2017-07-01
 
@@ -38,6 +38,10 @@ In JS, object sub-types are actually just built-in functions. Each of these buil
 Why do we need object sub-types?
 
 The primitive value `"I am a string"`is not an object, it's a primitive literal and immutable value. To perform operations on it, such as checking its length, accessing its individual character contents, etc, a`String`object is required.the language automatically coerces a`"string"`primitive to a`String`object when necessary, which means you almost never need to explicitly create the Object form.
+
+What is exactly the function?
+
+Functions are callable objects which are special in that they have an optional name property and a code property \(which is the body of the function that actually does stuff\).
 
 How to remember?
 
