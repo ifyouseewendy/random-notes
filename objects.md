@@ -2,8 +2,6 @@
 
 Source: [You Don't Know JS: this & Object Prototypes - Chapter 3: Objects](https://github.com/getify/You-Dont-Know-JS/blob/master/this %26 object prototypes/ch3.md)
 
-Date: 2017-07-01
-
 ## 1. Type
 
 Primary types \(language types\)

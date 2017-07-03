@@ -1,6 +1,8 @@
 # Prototypes
 
-Source: [You Don't Know JS: this & Object Prototypes - Chapter 5: Prototypes](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)
+Source: [You Don't Know JS: this & Object Prototypes - Chapter 5: Prototypes](https://github.com/getify/You-Dont-Know-JS/blob/master/this %26 object prototypes/ch5.md)
+
+## 1. My understanding
 
 After reading this part, I realize that `Arary`, `Function`, `Object`are all functions. I should admit that this refreshes my impression on JS. I know functions are first-class citizen in JS but it seems that it is all built on functions. Every object is created by functions:
 
@@ -28,11 +30,11 @@ Object.create(
 )
 ```
 
-### What is a prototype?
+## 2. What is a prototype?
 
 Objects in JavaScript have an internal property, denoted in the specification as`[[Prototype]]`, which is simply a reference to another object. Almost all objects are given a non-`null`value for this property, at the time of their creation.
 
-### How to get an object's prototype?
+## 3. How to get an object's prototype?
 
 via `__proto__`or `Object.getPrototypeOf`
 
@@ -66,7 +68,7 @@ Object.defineProperty( Object.prototype, "__proto__", {
 
 **Note: **The JavaScript community unofficially coined a term for the double-underscore, specifically the leading one in properties like`__proto__`: "dunder". So, the "cool kids" in JavaScript would generally pronounce`__proto__`as "dunder proto".
 
-### What is the `prototype` ?
+## 4. What is the `prototype` ?
 
 `prototype` is an object automatically created as a special property of a **function**, which is used to establish the delegation \(inheritance\) chain, aka prototype chain.
 
@@ -92,7 +94,7 @@ typeof Object === "function"
 var obj = new Object();
 ```
 
-### What's the difference between `__proto__` and `prototype`?
+## 5. What's the difference between `__proto__` and `prototype`?
 
 `__proto__`a reference works on every **object** to refer to its `[[Prototype]]`property.
 
@@ -113,7 +115,7 @@ Function.prototype.__proto__ === Object.prototype // true
 
 Refer to: [\_\_proto\_\_ VS. prototype in JavaScript](https://stackoverflow.com/questions/9959727/proto-vs-prototype-in-javascript)
 
-### What's process of method lookup via prototype chain?
+## 6. What's process of method lookup via prototype chain?
 
 ```js
 Object.foo = function() { console.log("foo"); };
@@ -150,32 +152,7 @@ get __proto__: function __proto__()
 set __proto__: function __proto__()
 ```
 
-### Avoid shadowing if possible
 
-Setting properties on an object was more nuanced than just adding a new property to the object or changing an existing property's value. Usually, shadowing is more complicated and nuanced than it's worth, **so you should try to avoid it if possible**.
 
-```js
-var anotherObject = {
-    a: 2
-};
 
-var myObject = Object.create( anotherObject );
-
-anotherObject.a; // 2
-myObject.a; // 2
-
-anotherObject.hasOwnProperty( "a" ); // true
-myObject.hasOwnProperty( "a" ); // false
-
-myObject.a++; // oops, implicit shadowing!
-
-anotherObject.a; // 2
-myObject.a; // 3
-
-myObject.hasOwnProperty( "a" ); // true
-```
-
-Though it may appear that`myObject.a++`should \(via delegation\) look-up and just increment the`anotherObject.a`property itself _in place _, instead the`++`operation corresponds to`myObject.a = myObject.a + 1`.
-
-That's the reason why we use delegation on prototype chain, we should avoid using the same name as traditional class inheritance would do.
 
