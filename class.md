@@ -1,10 +1,10 @@
 # "Class"
 
-## Misconception
+## 1. Misconception
 
 There's a peculiar kind of behavior in JavaScript that has been shamelessly abused for years to \_hack \_something that \_looks \_like "classes". JS developers have strived to simulate as much as they can of class-orientation.
 
-## "Constructors"
+## 2. "Constructors"
 
 ```js
 function Foo() {
@@ -103,7 +103,7 @@ Object.defineProperty( Foo.prototype, "constructor" , {
 
 That's a lot of manual work to fix`.constructor`. Moreover, all we're really doing is perpetuating the misconception that "constructor" means "was constructed by". That's an _expensive_ illusion.
 
-### What happened when we call`new` ?
+## 3. What happened when we call`new` ?
 
 ```js
 function New(func) {
@@ -124,17 +124,17 @@ var obj = new A(1, 2);
 ```
 
 1. It creates a new object. The type of this object, is simply _object_
-2. It sets this new object's internal, inaccessible, _\[\[prototype\]\] _\(i.e. **\_\_proto\_\_ **\) property to be the constructor function's external, accessible, _prototype _object \(every function object automatically has a _prototype _property\).
-3. It makes the `this `variable point to the newly created object.
-4. It executes the constructor function, using the newly created object whenever `this `is mentioned.
-5. It returns the newly created object, unless the constructor function returns a non-`null `object reference. In this case, that object reference is returned instead.
+2. It sets this new object's internal, inaccessible, _\[\[prototype\]\] _\(i.e. **\_\_proto\_\_ **\) property to be the constructor function's external, accessible, \_prototype \_object \(every function object automatically has a \_prototype \_property\).
+3. It makes the `this`variable point to the newly created object.
+4. It executes the constructor function, using the newly created object whenever `this`is mentioned.
+5. It returns the newly created object, unless the constructor function returns a non-`null`object reference. In this case, that object reference is returned instead.
 
 Reference
 
 * [What is the 'new' keyword in JavaScript?](https://stackoverflow.com/questions/1646698/what-is-the-new-keyword-in-javascript)
 * [new operator - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new)
 
-## Introspection
+## 4. Introspection
 
 ### `instanceof`
 
@@ -142,17 +142,17 @@ Reference
 a instanceof Foo; // true
 ```
 
-The`instanceof`operator takes a plain object as its left-hand operand and a**function**as its right-hand operand. The question`instanceof`answers is:**in the entire`[[Prototype]]`chain of`a`, does the object arbitrarily pointed to by`Foo.prototype`ever appear?**
+The`instanceof`operator takes a plain object as its left-hand operand and a**function**as its right-hand operand. The question`instanceof`answers is:**in the entire**`[[Prototype]]`**chain of**`a`**, does the object arbitrarily pointed to by**`Foo.prototype`**ever appear?**
 
-What if you have two arbitrary objects, say`a`and`b`, and want to find out if _the objects _are related to each other through a`[[Prototype]]`chain?
+What if you have two arbitrary objects, say`a`and`b`, and want to find out if \_the objects \_are related to each other through a`[[Prototype]]`chain?
 
 ```js
 // helper utility to see if `o1` is
 // related to (delegates to) `o2`
 function isRelatedTo(o1, o2) {
-	function F(){}
-	F.prototype = o2;
-	return o1 instanceof F;
+    function F(){}
+    F.prototype = o2;
+    return o1 instanceof F;
 }
 
 var a = {};
@@ -167,9 +167,9 @@ isRelatedTo( b, a ); // true
 Foo.prototype.isPrototypeOf( a ); // true
 ```
 
-The question`isPrototypeOf(..)`answers is:**in the entire`[[Prototype]]`chain of`a`, does`Foo.prototype`ever appear?**
+The question`isPrototypeOf(..)`answers is:**in the entire**`[[Prototype]]`**chain of**`a`**, does**`Foo.prototype`**ever appear?**
 
-What if you have two arbitrary objects, say`a`and`b`, and want to find out if _the objects _are related to each other through a`[[Prototype]]`chain?
+What if you have two arbitrary objects, say`a`and`b`, and want to find out if \_the objects \_are related to each other through a`[[Prototype]]`chain?
 
 ```js
 // Simply: does `a` appear anywhere in

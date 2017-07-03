@@ -1,6 +1,6 @@
 ### Design
 
-In JavaScript, there are no abstract patterns/blueprints for objects called "classes" as there are in class-oriented languages. **JavaScript just has objects**. In JavaScript, we don't make _copies \_from one object \("class"\) to another \("instance"\). **We make **_**links **\_**between objects.**
+In JavaScript, there are no abstract patterns/blueprints for objects called "classes" as there are in class-oriented languages. **JavaScript just has objects**. In JavaScript, we don't make _copies \_from one object \("class"\) to another \("instance"\). **We make **_**links **\_**between objects**
 
 In fact, JavaScript is **almost unique **among languages as perhaps the only language with the right to use the label "object oriented", because it's one of a very short list of languages where **an object can be created directly, without a class at all.**
 
@@ -33,7 +33,137 @@ But just like with "prototypal inheritance", "differential inheritance" pretends
 
 #### 
 
-### Object.create \( create delegation \)
+## Delegations by `Object.create`
+
+`Object.create(..)`\_creates \_a "new" object out of thin air, and links that new object's internal `[[Prototype]]`to the object you specify.
+
+### How to make plain object delegations?
+
+```js
+var foo = {
+    something: function() {
+        console.log( "Tell me something good..." );
+    }
+};
+
+var bar = Object.create( foo );
+
+bar.__proto__ === foo // true
+bar.something(); // Tell me something good...
+```
+
+### How to make delegations to perform "prototypal inheritance"?
+
+```js
+function Foo() {};
+Foo.prototype.foo = function() { console.log("foo"); };
+function Bar() {};
+
+Bar.prototype = Object.create(Foo.prototype);
+Bar.prototype.__proto__ === Foo.prototype // true
+
+var b = new Bar();
+b.foo(); // foo
+```
+
+Inspection: `Bar.prototype` has changed
+
+```js
+function Foo() {};
+Foo.prototype.foo = function() { console.log("foo"); };
+function Bar() {};
+
+Bar.prototype // Object {constructor: function}
+Bar.prototype = Object.create(Foo.prototype);
+Bar.prototype // Foo {}
+Bar.prototype.bar = function() { console.log("bar"); };
+Bar.prototype // Foo {bar: function}
+```
+
+Inspection: `Bar.prototype` is not a reference \(separated\) to `Foo.prototype`
+
+```js
+function Foo() {};
+Foo.prototype.foo = function() { console.log("foo"); };
+function Bar() {};
+
+Bar.prototype = Object.create(Foo.prototype);
+Bar.prototype.bar = function() { console.log("bar"); };
+
+Foo.prototype // Object {foo: function, constructor: function}
+Bar.prototype // Function {bar: function}
+```
+
+Why not?
+
+```js
+Bar = Object.create(Foo.prototype)
+// Cause it ends up Bar is no longer a function object.
+
+Bar.prototype = Object.create(Foo)
+// This links Bar.prototype to Foo, which is the function object. Foo.foo() is not a function.
+
+Bar.prototype = Foo.prototype;
+// It just makes Bar.prototype be another reference to Foo.prototype
+
+Bar.prototype = new Foo();
+// It creates a new object, but Foo might have unexpected behaviours in constructor calling
+```
+
+ES6-standardized techniques
+
+```js
+// pre-ES6
+// throws away default existing `Bar.prototype`
+Bar.prototype = Object.create( Foo.prototype );
+
+// ES6+
+// modifies existing `Bar.prototype`
+Object.setPrototypeOf( Bar.prototype, Foo.prototype );
+```
+
+### How to envision your own `Object.create`?
+
+This polyfill shows a very basic idea without handling the second parameter `propertiesObject`. 
+
+```js
+function createAndLinkObject(o) {
+	function F(){}
+	F.prototype = o;
+	return new F();
+}
+```
+
+Polyfill on [Object.create - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
+
+```js
+if (typeof Object.create != 'function') {
+  Object.create = (function(undefined) {
+    var Temp = function() {};
+    return function (prototype, propertiesObject) {
+      if(prototype !== Object(prototype)) {
+        throw TypeError(
+          'Argument must be an object, or null'
+        );
+      }
+      Temp.prototype = prototype || {};
+      var result = new Temp();
+      Temp.prototype = null;
+      if (propertiesObject !== undefined) {
+        Object.defineProperties(result, propertiesObject); 
+      } 
+      
+      // to imitate the case of Object.create(null)
+      if(prototype === null) {
+         result.__proto__ = null;
+      } 
+      return result;
+    };
+  })();
+}
+```
+
+
 
 
 
