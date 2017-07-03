@@ -1,10 +1,8 @@
-## Design
+# Behavior Delegation
 
-TBD
+JavaScript is **almost unique **among languages as perhaps the only language with the right to use the label "object oriented", because it's one of a very short list of languages where **an object can be created directly, without a class at all.**
 
-In JavaScript, there are no abstract patterns/blueprints for objects called "classes" as there are in class-oriented languages. **JavaScript just has objects**. In JavaScript, we don't make _copies \_from one object \("class"\) to another \("instance"\). **We make **_**links between objects**
-
-In fact, JavaScript is **almost unique **among languages as perhaps the only language with the right to use the label "object oriented", because it's one of a very short list of languages where **an object can be created directly, without a class at all.**
+In JavaScript, there are no abstract patterns/blueprints for objects called "classes" as there are in class-oriented languages. **JavaScript just has objects**. In JavaScript, we don't make _copies \_from one object \("class"\) to another \("instance"\)_. **We make **\_**links between objects**
 
 ```js
 function Foo() {
@@ -18,15 +16,19 @@ Object.getPrototypeOf( a ) === Foo.prototype; // true
 Object.getPrototypeOf( b ) === Foo.prototype; // true
 ```
 
-When`a`is created by calling`new Foo()`, one of the things \(see Chapter 2 for all\_four\_steps\) that happens is that`a`gets an internal`[[Prototype]]`link to the object that`Foo.prototype`is pointing at. **We end up with two objects, linked to each other.**
+When`a`is created by calling`new Foo()`, one of the things \(see Chapter 2 for all four steps\) that happens is that`a`gets an internal`[[Prototype]]`link to the object that`Foo.prototype`is pointing at. **We end up with two objects, linked to each other.**
+
+The actual mechanism, the essence of what's important to the functionality we can leverage in JavaScript, is **all about objects being linked to other objects.**
+
+# Behavior Delegation
 
 ### Compared to traditional inheritance
 
-In class-oriented languages, multiple copies \(aka, "instances"\) of a class can be made, like stamping something out from a mold. But in JavaScript, there are no such copy-actions performed. You don't create multiple instances of a class. You can create multiple objects that `[[Prototype]]`_link to a common object. But by default, no copying occurs, and thus these objects don't end up totally separate and disconnected from each other, but rather, quite _**linked**\_.
+In class-oriented languages, multiple copies \(aka, "instances"\) of a class can be made, like stamping something out from a mold. But in JavaScript, there are no such copy-actions performed. You don't create multiple instances of a class. You can create multiple objects that `[[Prototype]]`_link to a common object. But by default, no copying occurs, and thus these objects don't end up totally separate and disconnected from each other, but rather, quite _**linked**.
 
-"inheritance" \(and "prototypal inheritance"\) and all the other OO terms just do not make sense when considering how JavaScript _actually _works \(not just applied to our forced mental models\).
+"inheritance" \(and "prototypal inheritance"\) and all the other OO terms just do not make sense when considering how JavaScript \_actually \_works \(not just applied to our forced mental models\).
 
-Instead, "delegation" is a more appropriate term, because these relationships are not _copies _but delegation **links**.
+Instead, "delegation" is a more appropriate term, because these relationships are not \_copies \_but delegation **links**.
 
 #### Prototypal Inheritance && Differential Inheritance
 
