@@ -14,7 +14,7 @@ Anyway, behaviour delegation works and I consider it as the right mental model t
 
 ## 2. Background
 
-JavaScript is **almost unique **among languages as perhaps the only language with the right to use the label "object oriented", because it's one of a very short list of languages where **an object can be created directly, without a class at all.**
+JavaScript is **almost unique** among languages as perhaps the only language with the right to use the label "object oriented", because it's one of a very short list of languages where **an object can be created directly, without a class at all.**
 
 In JavaScript, there are no abstract patterns/blueprints for objects called "classes" as there are in class-oriented languages. **JavaScript just has objects**. In JavaScript, we don't make _copies_ from one object \("class"\) to another \("instance"\). **We make links between objects.**
 
@@ -36,11 +36,11 @@ The actual mechanism, the essence of what's important to the functionality we ca
 
 ### Compared to traditional inheritance
 
-In class-oriented languages, multiple copies \(aka, "instances"\) of a class can be made, like stamping something out from a mold. But in JavaScript, there are no such copy-actions performed. You don't create multiple instances of a class. You can create multiple objects that `[[Prototype]]`link to a common object. But by default, no copying occurs, and thus these objects don't end up totally separate and disconnected from each other, but rather, quit_e _**linked**.
+In class-oriented languages, multiple copies \(aka, "instances"\) of a class can be made, like stamping something out from a mold. But in JavaScript, there are no such copy-actions performed. You don't create multiple instances of a class. You can create multiple objects that `[[Prototype]]`link to a common object. But by default, no copying occurs, and thus these objects don't end up totally separate and disconnected from each other, but rather, quite **linked**.
 
 "inheritance" \(and "prototypal inheritance"\) and all the other OO terms just do not make sense when considering how JavaScript _actually_ works \(not just applied to our forced mental models\).
 
-Instead, "delegation" is a more appropriate term, because **these relationships are not **_**copies**_** but delegation **_**links**_.
+Instead, "delegation" is a more appropriate term, because **these relationships are not ***copies*** but delegation ***links***.
 
 ### Prototypal Inheritance && Differential Inheritance
 
@@ -241,7 +241,7 @@ XYZ.outputTaskDetails = function() {
 
 ### Avoid shadowing \(naming things the same\) if at all possible
 
-With the class design pattern, we intentionally named`outputTask`the same on both parent \(`Task`\) and child \(`XYZ`\), so that we could take advantage of overriding \(polymorphism\). In behavior delegation, we do the opposite: **we avoid if at all possible naming things the same **at different levels of the`[[Prototype]]`chain \(called **shadowing**\), because having those name collisions creates awkward/brittle syntax to disambiguate references, and we want to avoid that if we can.
+With the class design pattern, we intentionally named`outputTask`the same on both parent \(`Task`\) and child \(`XYZ`\), so that we could take advantage of overriding \(polymorphism\). In behavior delegation, we do the opposite: **we avoid if at all possible naming things the same** at different levels of the`[[Prototype]]`chain \(called **shadowing**\), because having those name collisions creates awkward/brittle syntax to disambiguate references, and we want to avoid that if we can.
 
 This design pattern calls for less of general method names which are prone to overriding and instead more of descriptive method names, specific to the type of behavior each object is doing.**This can actually create easier to understand/maintain code**, because the names of methods \(not only at definition location but strewn throughout other code\) are more obvious \(self documenting\).
 
@@ -268,7 +268,7 @@ myObject.a; // 3
 myObject.hasOwnProperty( "a" ); // true
 ```
 
-Though it may appear that`myObject.a++`should \(via delegation\) look-up and just increment the`anotherObject.a`property itself _in place _, instead the`++`operation corresponds to`myObject.a = myObject.a + 1`.
+Though it may appear that`myObject.a++`should \(via delegation\) look-up and just increment the`anotherObject.a`property itself _in place_, instead the`++`operation corresponds to`myObject.a = myObject.a + 1`.
 
 That's the reason why we use delegation on prototype chain, we should avoid using the same name as traditional class inheritance would do.
 
@@ -304,9 +304,9 @@ b1.speak();
 b2.speak();
 ```
 
-OO style features `constructor` which introduces a lot of extra details that you don't \_technically \_need to know at all times.
+OO style features `constructor` which introduces a lot of extra details that you don't _technically_ need to know at all times.
 
-![](/assets/OO.png)
+![OO.png](/assets/OO.png)
 
 OLOO style
 
@@ -335,7 +335,6 @@ b1.speak();
 b2.speak();
 ```
 
-OLOO-style code has \_vastly less stuff \_to worry about, because it embraces the **fact **that the only thing we ever really cared about was the **objects linked to other objects**.
+OLOO-style code has _vastly less stuff_ to worry about, because it embraces the **fact **that the only thing we ever really cared about was the **objects linked to other objects**.
 
-![](/assets/OLOO.png)
-
+![OLOO.png](/assets/OLOO.png)
