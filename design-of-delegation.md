@@ -1,8 +1,12 @@
 # Behavior Delegation
 
+### What is Behavior Delegation?
+
+I'd love to think about the design 
+
 JavaScript is **almost unique **among languages as perhaps the only language with the right to use the label "object oriented", because it's one of a very short list of languages where **an object can be created directly, without a class at all.**
 
-In JavaScript, there are no abstract patterns/blueprints for objects called "classes" as there are in class-oriented languages. **JavaScript just has objects**. In JavaScript, we don't make _copies \_from one object \("class"\) to another \("instance"\)_. **We make **\_**links between objects**
+In JavaScript, there are no abstract patterns/blueprints for objects called "classes" as there are in class-oriented languages. **JavaScript just has objects**. In JavaScript, we don't make _copies from one object \("class"\) to another \("instance"\)_. **We make links between objects**
 
 ```js
 function Foo() {
