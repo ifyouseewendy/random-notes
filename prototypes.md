@@ -1,5 +1,18 @@
 # Prototypes
 
+So, `Arary`, `Function`, `Object`are all functions. I should admit that this refreshes my impression on JS. I know functions are first-class citizen in JS but it seems that it is all built on functions. Every object is created by functions:
+
+```js
+// simple primitives are auto boxing: new Number(1)
+var number = 1                       
+
+// object literal
+var obj = {} // is equivalent to: Object.create(Object.prototype);
+
+// object created by constructor
+var date = new Date("2017-07-01");
+```
+
 ### What is a prototype?
 
 Objects in JavaScript have an internal property, denoted in the specification as`[[Prototype]]`, which is simply a reference to another object. Almost all objects are given a non-`null`value for this property, at the time of their creation.
@@ -25,14 +38,14 @@ We could roughly envision `__proto__` implemented like this
 
 ```js
 Object.defineProperty( Object.prototype, "__proto__", {
-	get: function() {
-		return Object.getPrototypeOf( this );
-	},
-	set: function(o) {
-		// setPrototypeOf(..) as of ES6
-		Object.setPrototypeOf( this, o );
-		return o;
-	}
+    get: function() {
+        return Object.getPrototypeOf( this );
+    },
+    set: function(o) {
+        // setPrototypeOf(..) as of ES6
+        Object.setPrototypeOf( this, o );
+        return o;
+    }
 } );
 ```
 
@@ -63,8 +76,6 @@ Why to emphasize the property of a **function**?
 typeof Object === "function"
 var obj = new Object();
 ```
-
-So, `Arary`, `Function`, `Object`are all functions. I should admit that this refreshes my impression on JS. I know functions are first-class citizen in JS but it seems that it is built on functions.
 
 ### What's the difference between `__proto__` and `prototype`?
 
