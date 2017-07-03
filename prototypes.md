@@ -19,6 +19,25 @@ b.__proto__ === Foo.prototype
 b.__proto__.__proto__ === Object.prototype
 ```
 
+So where is `__proto__`defined? `Object.prototype.__proto__`
+
+We could roughly envision `__proto__` implemented like this
+
+```js
+Object.defineProperty( Object.prototype, "__proto__", {
+	get: function() {
+		return Object.getPrototypeOf( this );
+	},
+	set: function(o) {
+		// setPrototypeOf(..) as of ES6
+		Object.setPrototypeOf( this, o );
+		return o;
+	}
+} );
+```
+
+**Note: **The JavaScript community unofficially coined a term for the double-underscore, specifically the leading one in properties like`__proto__`: "dunder". So, the "cool kids" in JavaScript would generally pronounce`__proto__`as "dunder proto".
+
 ### What is the `prototype` ?
 
 `prototype` is an object automatically created as a special property of a **function**, which is used to establish the delegation \(inheritance\) chain, aka prototype chain.
