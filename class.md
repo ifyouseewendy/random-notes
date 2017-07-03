@@ -36,11 +36,11 @@ The fact is,`.constructor`on an object arbitrarily points, by default, at a func
 
 ### What is exactly a "constructor"?
 
-In other words, in JavaScript, it's most appropriate to say that a "constructor" is **any function called with the**`new`**keyword **in front of it. Functions aren't constructors, but function calls are "constructor calls" if and only if`new`is used.
+In other words, in JavaScript, it's most appropriate to say that a "constructor" is **any function called with the**`new`**keyword** in front of it. Functions aren't constructors, but function calls are "constructor calls" if and only if`new`is used.
 
 ### Do we have to capitalize the constructor function? NO!
 
-By convention in the JavaScript world, "class"es are named with a capital letter, so the fact that it's`Foo`instead of`foo`is a strong clue that we intend it to be a "class". But the capital letter doesn't mean _**anything **_**at all **to the JS engine.
+By convention in the JavaScript world, "class"es are named with a capital letter, so the fact that it's `Foo` instead of `foo` is a strong clue that we intend it to be a "class". But the capital letter doesn't mean **anything** at all to the JS engine.
 
 ```js
 function foo() {}
@@ -50,7 +50,7 @@ new foo() // foo {}
 foo.prototype // Object {constructor: function}
 ```
 
-In reality,`Foo`is no more a "constructor" than any other function in your program. Functions themselves are **not **constructors. However, when you put the`new`keyword in front of a normal function call, that makes that function call a "constructor call". In fact,`new`sort of hijacks any normal function and calls it in a fashion that constructs an object, **in addition to whatever else it was going to do**.
+In reality,`Foo`is no more a "constructor" than any other function in your program. Functions themselves are **not** constructors. However, when you put the`new`keyword in front of a normal function call, that makes that function call a "constructor call". In fact,`new`sort of hijacks any normal function and calls it in a fashion that constructs an object, **in addition to whatever else it was going to do**.
 
 ```js
 function NothingSpecial() {
@@ -63,7 +63,7 @@ var a = new NothingSpecial();
 a; // {}
 ```
 
-`NothingSpecial`is just a plain old normal function, but when called with`new`, it_constructs\_an object, almost as a side-effect, which we happen to assign to_`a`_. The **call **was a constructor call_, but`NothingSpecial`is not, in and of itself, a_constructor_.
+`NothingSpecial`is just a plain old normal function, but when called with`new`, it constructs an object, almost as a side-effect, which we happen to assign to _`a`_. The **call** was a constructor call, but `NothingSpecial` is not, in and of itself, a constructor.
 
 ### Is `.constructor`reliable to be used as a reference? NO!
 
@@ -135,7 +135,7 @@ var obj = new A(1, 2);
 ```
 
 1. It creates a new object. The type of this object, is simply _object_
-2. It sets this new object's internal, inaccessible, _\[\[prototype\]\] _\(i.e. **\_\_proto\_\_ **\) property to be the constructor function's external, accessible, _prototype_ object \(every function object automatically has a _prototype_ property\).
+2. It sets this new object's internal, inaccessible, _[[prototype]]_(i.e. **\_\_proto\_\_**) property to be the constructor function's external, accessible, _prototype_ object \(every function object automatically has a _prototype_ property\).
 3. It makes the `this`variable point to the newly created object.
 4. It executes the constructor function, using the newly created object whenever `this`is mentioned.
 5. It returns the newly created object, unless the constructor function returns a non-`null`object reference. In this case, that object reference is returned instead.
@@ -187,6 +187,3 @@ What if you have two arbitrary objects, say`a`and`b`, and want to find out if _t
 // `b`s [[Prototype]] chain?
 a.isPrototypeOf( b );
 ```
-
-
-
