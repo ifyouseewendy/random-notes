@@ -2,6 +2,7 @@
 
 Source: [You Don't Know JS: this & Object Prototypes - Chapter 3: Objects](https://github.com/getify/You-Dont-Know-JS/blob/master/this %26 object prototypes/ch3.md)
 
+
 ## 1. Type
 
 Primary types \(language types\)
@@ -51,7 +52,7 @@ Objects are collections of key/value pairs. The values can be accessed as proper
 
 Properties have certain characteristics that can be controlled through property descriptors, such as`writable`and`configurable`. In addition, objects can have their mutability \(and that of their properties\) controlled to various levels of immutability using`Object.preventExtensions(..)`,`Object.seal(..)`, and`Object.freeze(..)`.
 
-Properties don't have to contain values -- they can be "accessor properties" as well, with getters/setters. They can also be either\_enumerable\_or not, which controls if they show up in`for..in`loop iterations, for instance.
+Properties don't have to contain values -- they can be "accessor properties" as well, with getters/setters. They can also be either _enumerable_ or not, which controls if they show up in`for..in`loop iterations, for instance.
 
 ### Properties
 
@@ -120,7 +121,7 @@ anotherArray.push( anotherObject, myObject );
 
 It's hard to tell which of shallow and deep copy is right without the use case.
 
-One subset solution is that objects which are JSON-safe \(that is, can be serialized to a JSON string and then re-parsed to an object with the same structure and values\) can easily be \_duplicated \_with:
+One subset solution is that objects which are JSON-safe \(that is, can be serialized to a JSON string and then re-parsed to an object with the same structure and values\) can easily be _duplicated_ with:
 
 ```js
 var newObj = JSON.parse( JSON.stringify( someObj ) );
@@ -188,7 +189,7 @@ var myObject = {
 myObject.a; // 2
 ```
 
-The`myObject.a`is a property access, but it doesn't \_just \_look in `myObject`for a property of the name `a`, as it might seem. According to the spec, the code above actually performs a`[[Get]]`operation \(kinda like a function call:`[[Get]]()`\) on the`myObject`. The default built-in`[[Get]]`operation for an object \_first \_inspects the object for a property of the requested name, and if it finds it, it will return the value accordingly.
+The`myObject.a`is a property access, but it doesn't _just_ look in `myObject`for a property of the name `a`, as it might seem. According to the spec, the code above actually performs a`[[Get]]`operation \(kinda like a function call:`[[Get]]()`\) on the`myObject`. The default built-in`[[Get]]`operation for an object _first_ inspects the object for a property of the requested name, and if it finds it, it will return the value accordingly.
 
 One important result of this`[[Get]]`operation is that if it cannot through any means come up with a value for the requested property, it instead returns the value`undefined`\(instead of a`ReferenceError`\).
 
@@ -228,7 +229,7 @@ myObject.hasOwnProperty( "a" );    // true
 myObject.hasOwnProperty( "b" );    // false
 ```
 
-The`in`operator will check to see if the property is _in \_the object, or if it exists at any higher level of the_`[[Prototype]]`_chain object traversal \(see Chapter 5\). By contrast,_`hasOwnProperty(..)`_checks to see if \_only _`myObject`has the property or not, and will \_not \_consult the`[[Prototype]]`chain.
+The`in`operator will check to see if the property is _in_ the object, or if it exists at any higher level of the _`[[Prototype]]`_ chain object traversal \(see Chapter 5\). By contrast, _`hasOwnProperty(..)`_ checks to see if _only_ `myObject`has the property or not, and will _not_ consult the`[[Prototype]]`chain.
 
 `hasOwnProperty(..)`is accessible for all normal objects via delegation to`Object.prototype`\(see Chapter 5\). But it's possible to create an object that does not link to`Object.prototype`\(via`Object.create(null)`-- see Chapter 5\). In this case, a method call like`myObject.hasOwnProperty(..)`would fail.
 
@@ -238,15 +239,14 @@ In that scenario, a more robust way of performing such a check is`Object.prototy
 
 The`for..in`loop iterates over the list of enumerable properties on an object \(including its`[[Prototype]]`chain\). But what if you instead want to iterate over the values?
 
-`for..in`loops applied to arrays can give somewhat unexpected results, in that the enumeration of an array will include not only all the numeric indices, but also any enumerable properties. It's a good idea to use`for..in`loops \_only \_on objects, and traditional`for`loops with numeric index iteration for the values stored in arrays.
+`for..in`loops applied to arrays can give somewhat unexpected results, in that the enumeration of an array will include not only all the numeric indices, but also any enumerable properties. It's a good idea to use`for..in`loops _only_ on objects, and traditional`for`loops with numeric index iteration for the values stored in arrays.
 
 ES5 also added several iteration helpers for arrays, including `forEach(..)`, `every(..)`, and `some(..)`.
 
 * `forEach(..)`will iterate over all values in the array, and ignores any callback return values.
-* `every(..)`keeps going until the end \_or \_the callback returns a`false`\(or "falsy"\) value, whereas
-* `some(..)`keeps going until the end \_or \_the callback returns a `true`\(or "truthy"\) value.
+* `every(..)`keeps going until the end _or_ the callback returns a`false`\(or "falsy"\) value, whereas
+* `some(..)`keeps going until the end _or_ the callback returns a `true`\(or "truthy"\) value.
 
 As contrasted with iterating over an array's indices in a numerically ordered way \(`for`loop or other iterators\), the order of iteration over an object's properties is **not guaranteed **and may vary between different JS engines. **Do not rely **on any observed ordering for anything that requires consistency among environments, as any observed agreement is unreliable.
 
 You can also iterate over **the values **in data structures \(arrays, objects, etc\) using the ES6`for..of`syntax, which looks for either a built-in or custom`@@iterator`object consisting of a`next()`method to advance through the data values one at a time.
-
