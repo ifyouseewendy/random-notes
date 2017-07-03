@@ -6,11 +6,24 @@ So, `Arary`, `Function`, `Object`are all functions. I should admit that this ref
 // simple primitives are auto boxing: new Number(1)
 var number = 1                       
 
+// object created by constructor
+var date = new Date("2017-07-01");
+
 // object literal
 var obj = {} // is equivalent to: Object.create(Object.prototype);
 
-// object created by constructor
-var date = new Date("2017-07-01");
+var obj = { foo: "hello" } // is equivalent to
+
+Object.create(
+  Object.prototype,
+  {
+    foo: {
+      writable: true,
+      configurable: true,
+      value: 'hello'
+    }
+  }
+)
 ```
 
 ### What is a prototype?
