@@ -1,5 +1,7 @@
 # Behavior Delegation
 
+Source: [You Don't Know JS: this & Object Prototypes - Chapter 6: Behavior Delegation](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch6.md)
+
 ## My understanding
 
 Considering we don't actually have `class` in Javascript, but we want the benefit of behaviour sharing around code entities. Javascript employs behaviour delegation as the `[[Prototype]]`mechanism. It kinda differs from the traditional class-instance  thinking, but it's still in the spectrum of OO, as a form of plain objects linking \(delegation\) instead of inheritance.
@@ -245,7 +247,7 @@ This design pattern calls for less of general method names which are prone to ov
 
 ### Save state on delegators
 
-In general, with`[[Prototype]]`delegation involved, **you want state to be on the delegators**\(`XYZ`,`ABC`\), not on the delegate \(`Task`\). We benefit it from the implicit call-site `this `binding rules.
+In general, with`[[Prototype]]`delegation involved, **you want state to be on the delegators**\(`XYZ`,`ABC`\), not on the delegate \(`Task`\). We benefit it from the implicit call-site `this`binding rules.
 
 ### Comparison
 
@@ -253,19 +255,19 @@ OO style
 
 ```js
 function Foo(who) {
-	this.me = who;
+    this.me = who;
 }
 Foo.prototype.identify = function() {
-	return "I am " + this.me;
+    return "I am " + this.me;
 };
 
 function Bar(who) {
-	Foo.call( this, who );
+    Foo.call( this, who );
 }
 Bar.prototype = Object.create( Foo.prototype );
 
 Bar.prototype.speak = function() {
-	alert( "Hello, " + this.identify() + "." );
+    alert( "Hello, " + this.identify() + "." );
 };
 
 var b1 = new Bar( "b1" );
@@ -275,7 +277,7 @@ b1.speak();
 b2.speak();
 ```
 
-OO style features `constructor` which introduces a lot of extra details that you don't _technically _need to know at all times.
+OO style features `constructor` which introduces a lot of extra details that you don't \_technically \_need to know at all times.
 
 ![](/assets/OO.png)
 
@@ -283,18 +285,18 @@ OLOO style
 
 ```js
 var Foo = {
-	init: function(who) {
-		this.me = who;
-	},
-	identify: function() {
-		return "I am " + this.me;
-	}
+    init: function(who) {
+        this.me = who;
+    },
+    identify: function() {
+        return "I am " + this.me;
+    }
 };
 
 var Bar = Object.create( Foo );
 
 Bar.speak = function() {
-	alert( "Hello, " + this.identify() + "." );
+    alert( "Hello, " + this.identify() + "." );
 };
 
 var b1 = Object.create( Bar );
@@ -306,9 +308,7 @@ b1.speak();
 b2.speak();
 ```
 
-OLOO-style code has _vastly less stuff _to worry about, because it embraces the **fact **that the only thing we ever really cared about was the **objects linked to other objects**.
+OLOO-style code has \_vastly less stuff \_to worry about, because it embraces the **fact **that the only thing we ever really cared about was the **objects linked to other objects**.
 
 ![](/assets/OLOO.png)
-
-
 

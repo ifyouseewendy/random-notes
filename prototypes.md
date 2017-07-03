@@ -1,6 +1,8 @@
 # Prototypes
 
-So, `Arary`, `Function`, `Object`are all functions. I should admit that this refreshes my impression on JS. I know functions are first-class citizen in JS but it seems that it is all built on functions. Every object is created by functions:
+Source: [You Don't Know JS: this & Object Prototypes - Chapter 5: Prototypes](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)
+
+After reading this part, I realize that `Arary`, `Function`, `Object`are all functions. I should admit that this refreshes my impression on JS. I know functions are first-class citizen in JS but it seems that it is all built on functions. Every object is created by functions:
 
 ```js
 // simple primitives are auto boxing: new Number(1)

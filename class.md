@@ -1,8 +1,19 @@
 # "Class"
 
+Source: [You Don't Know JS: this & Object Prototypes - Chapter 4: Mixing \(Up\) "Class" Objects](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch4.md)
+
 ## 1. Misconception
 
 There's a peculiar kind of behavior in JavaScript that has been shamelessly abused for years to _hack_ something that _looks_ like "classes". JS developers have strived to simulate as much as they can of class-orientation.
+
+JS has had _some_ class-like syntactic elements \(like`new`and`instanceof`\) for quite awhile, and more recently in ES6, some additions, like the`class`keyword \(see Appendix A\). But does that mean JavaScript actually _has_ classes? Plain and simple: **No.**
+
+**Classes mean copies. **JavaScript **does not automatically **create copies \(as classes imply\) between objects.
+
+Read [You Don't Know JS: this & Object Prototypes - Chapter 4: Mixing \(Up\) "Class" Objects](https://github.com/getify/You-Dont-Know-JS/blob/master/this %26 object prototypes/ch4.md) for details:
+
+* Why does Javascript not feature class inheritance? 
+* Why does mixin pattern \(both explicit and implicit\) as the common sort of emulating class copy behavior, not work in Javascript?
 
 ## 2. "Constructors"
 
@@ -81,7 +92,7 @@ a1.constructor === Foo; // false!
 a1.constructor === Object; // true!
 ```
 
-What's happening?`a1`has no`.constructor`property, so it delegates up the`[[Prototype]]`chain to`Foo.prototype`. But that object doesn't have a`.constructor`either \(like the default`Foo.prototype`object would have had!\), so it keeps delegating, this time up to`Object.prototype`, the top of the delegation chain.\_That \_object indeed has a`.constructor`on it, which points to the built-in`Object(..)`function.
+What's happening?`a1`has no`.constructor`property, so it delegates up the`[[Prototype]]`chain to`Foo.prototype`. But that object doesn't have a`.constructor`either \(like the default`Foo.prototype`object would have had!\), so it keeps delegating, this time up to`Object.prototype`, the top of the delegation chain._That_ object indeed has a`.constructor`on it, which points to the built-in`Object(..)`function.
 
 Of course, you can add`.constructor`back to the`Foo.prototype`object, but this takes manual work, especially if you want to match native behavior and have it be non-enumerable.
 
@@ -124,7 +135,7 @@ var obj = new A(1, 2);
 ```
 
 1. It creates a new object. The type of this object, is simply _object_
-2. It sets this new object's internal, inaccessible, _\[\[prototype\]\] _\(i.e. **\_\_proto\_\_ **\) property to be the constructor function's external, accessible, \_prototype \_object \(every function object automatically has a \_prototype \_property\).
+2. It sets this new object's internal, inaccessible, _\[\[prototype\]\] _\(i.e. **\_\_proto\_\_ **\) property to be the constructor function's external, accessible, _prototype_ object \(every function object automatically has a _prototype_ property\).
 3. It makes the `this`variable point to the newly created object.
 4. It executes the constructor function, using the newly created object whenever `this`is mentioned.
 5. It returns the newly created object, unless the constructor function returns a non-`null`object reference. In this case, that object reference is returned instead.
@@ -144,7 +155,7 @@ a instanceof Foo; // true
 
 The`instanceof`operator takes a plain object as its left-hand operand and a**function**as its right-hand operand. The question`instanceof`answers is:**in the entire**`[[Prototype]]`**chain of**`a`**, does the object arbitrarily pointed to by**`Foo.prototype`**ever appear?**
 
-What if you have two arbitrary objects, say`a`and`b`, and want to find out if \_the objects \_are related to each other through a`[[Prototype]]`chain?
+What if you have two arbitrary objects, say`a`and`b`, and want to find out if _the objects_ are related to each other through a`[[Prototype]]`chain?
 
 ```js
 // helper utility to see if `o1` is
@@ -169,7 +180,7 @@ Foo.prototype.isPrototypeOf( a ); // true
 
 The question`isPrototypeOf(..)`answers is:**in the entire**`[[Prototype]]`**chain of**`a`**, does**`Foo.prototype`**ever appear?**
 
-What if you have two arbitrary objects, say`a`and`b`, and want to find out if \_the objects \_are related to each other through a`[[Prototype]]`chain?
+What if you have two arbitrary objects, say`a`and`b`, and want to find out if _the objects_ are related to each other through a`[[Prototype]]`chain?
 
 ```js
 // Simply: does `a` appear anywhere in
