@@ -2,7 +2,7 @@
 
 ## 1. Misconception
 
-There's a peculiar kind of behavior in JavaScript that has been shamelessly abused for years to \_hack \_something that \_looks \_like "classes". JS developers have strived to simulate as much as they can of class-orientation.
+There's a peculiar kind of behavior in JavaScript that has been shamelessly abused for years to _hack_ something that _looks_ like "classes". JS developers have strived to simulate as much as they can of class-orientation.
 
 ## 2. "Constructors"
 
