@@ -1,8 +1,8 @@
 # Behavior Delegation
 
-Source: [You Don't Know JS: this & Object Prototypes - Chapter 6: Behavior Delegation](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch6.md)
+Source: [You Don't Know JS: this & Object Prototypes - Chapter 6: Behavior Delegation](https://github.com/getify/You-Dont-Know-JS/blob/master/this %26 object prototypes/ch6.md)
 
-## My understanding
+## 1. My understanding
 
 Considering we don't actually have `class` in Javascript, but we want the benefit of behaviour sharing around code entities. Javascript employs behaviour delegation as the `[[Prototype]]`mechanism. It kinda differs from the traditional class-instance  thinking, but it's still in the spectrum of OO, as a form of plain objects linking \(delegation\) instead of inheritance.
 
@@ -12,7 +12,7 @@ Behavior delegation looks like a side-effect outcome on the way Javascript striv
 
 Anyway, behaviour delegation works and I consider it as the right mental model to illustrate the chaos in Javascript, which is much better than the contrived class thinking.
 
-## Background
+## 2. Background
 
 JavaScript is **almost unique **among languages as perhaps the only language with the right to use the label "object oriented", because it's one of a very short list of languages where **an object can be created directly, without a class at all.**
 
@@ -50,7 +50,7 @@ Another term which is sometimes thrown around in JavaScript is "**differential i
 
 But just like with "prototypal inheritance", "differential inheritance" pretends that your mental model is more important than what is physically happening in the language. It overlooks the fact that object `B`is not actually differentially constructed, but is instead built with specific characteristics defined, alongside "holes" where nothing is defined. It is in these "holes" \(gaps in, or lack of, definition\) that delegation _can_ take over and, on the fly, "fill them in" with delegated behavior.
 
-## Delegations by `Object.create`
+## 3. Create delegations by `Object.create`
 
 `Object.create(..)` creates a "new" object out of thin air, and links that new object's internal `[[Prototype]]`to the object you specify.
 
@@ -188,7 +188,7 @@ if (typeof Object.create != 'function') {
 }
 ```
 
-## Towards Delegation-Oriented Design
+## 4. Towards Delegation-Oriented Design
 
 Pseudo-code for class theory
 
@@ -244,6 +244,33 @@ XYZ.outputTaskDetails = function() {
 With the class design pattern, we intentionally named`outputTask`the same on both parent \(`Task`\) and child \(`XYZ`\), so that we could take advantage of overriding \(polymorphism\). In behavior delegation, we do the opposite: **we avoid if at all possible naming things the same **at different levels of the`[[Prototype]]`chain \(called **shadowing**\), because having those name collisions creates awkward/brittle syntax to disambiguate references, and we want to avoid that if we can.
 
 This design pattern calls for less of general method names which are prone to overriding and instead more of descriptive method names, specific to the type of behavior each object is doing.**This can actually create easier to understand/maintain code**, because the names of methods \(not only at definition location but strewn throughout other code\) are more obvious \(self documenting\).
+
+Setting properties on an object was more nuanced than just adding a new property to the object or changing an existing property's value. Usually, shadowing is more complicated and nuanced than it's worth, **so you should try to avoid it if possible**.
+
+```js
+var anotherObject = {
+    a: 2
+};
+
+var myObject = Object.create( anotherObject );
+
+anotherObject.a; // 2
+myObject.a; // 2
+
+anotherObject.hasOwnProperty( "a" ); // true
+myObject.hasOwnProperty( "a" ); // false
+
+myObject.a++; // oops, implicit shadowing!
+
+anotherObject.a; // 2
+myObject.a; // 3
+
+myObject.hasOwnProperty( "a" ); // true
+```
+
+Though it may appear that`myObject.a++`should \(via delegation\) look-up and just increment the`anotherObject.a`property itself _in place _, instead the`++`operation corresponds to`myObject.a = myObject.a + 1`.
+
+That's the reason why we use delegation on prototype chain, we should avoid using the same name as traditional class inheritance would do.
 
 ### Save state on delegators
 
