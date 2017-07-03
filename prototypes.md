@@ -105,7 +105,32 @@ get __proto__: function __proto__()
 set __proto__: function __proto__()
 ```
 
+### Avoid shadowing if possible
 
+Setting properties on an object was more nuanced than just adding a new property to the object or changing an existing property's value. Usually, shadowing is more complicated and nuanced than it's worth, **so you should try to avoid it if possible**.
 
+```js
+var anotherObject = {
+    a: 2
+};
 
+var myObject = Object.create( anotherObject );
+
+anotherObject.a; // 2
+myObject.a; // 2
+
+anotherObject.hasOwnProperty( "a" ); // true
+myObject.hasOwnProperty( "a" ); // false
+
+myObject.a++; // oops, implicit shadowing!
+
+anotherObject.a; // 2
+myObject.a; // 3
+
+myObject.hasOwnProperty( "a" ); // true
+```
+
+Though it may appear that`myObject.a++`should \(via delegation\) look-up and just increment the`anotherObject.a`property itself _in place _, instead the`++`operation corresponds to`myObject.a = myObject.a + 1`.
+
+That's the reason why we use delegation on prototype chain, we should avoid using the same name as traditional class inheritance would do.
 
