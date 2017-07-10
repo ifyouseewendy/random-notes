@@ -2,6 +2,8 @@ Reference:
 
 * [GOTO 2017 • The Many Meanings of Event-Driven Architecture • Martin Fowler](https://www.youtube.com/watch?v=STKCRSUsyP0)
 * [What do you mean by “Event-Driven”?](https://martinfowler.com/articles/201701-event-driven.html)
+* [Bliki - CQRS](https://martinfowler.com/bliki/CQRS.html)
+* [Event Architectures](https://martinfowler.com/tags/event%20architectures.html)
 
 ## Event Notification
 
@@ -19,8 +21,6 @@ Obviously, the bad part is that you don't have a big picture about what's going 
 
 ![](/assets/event-carried-state-transfer.png)
 
-
-
 This also a common model which is a kind of stretching part of the first model that how does a receiver have a full knowledge of the event even though a sender has already sent sort of "enough" information about the details of change. Usually the receiver will request the information from the sender through an API, which introduces more traffic to senders. Therefore, the receiver will have its own copy of the information, like a layer of cache.
 
 The downside of every system about "copying" is the syncing problem, data consistency.
@@ -35,13 +35,20 @@ The downside of every system about "copying" is the syncing problem, data consis
 
 > The core idea of event sourcing is that whenever we make a change to the state of a system, we record that state change as an event, and we can confidently rebuild the system state by reprocessing the events at any time in the future. The event store becomes the principal source of truth, and the system state is purely derived from it.
 
-Event sourcing is a system or thought that we employ events or logs to record the process of the application state changing.  
+Event sourcing is a system or thought that we employ events or logs to record the process of the application state changing. We don't build event sourcing system a lot, but we use it everyday, eg. git, Rails DB migration, state management in Redux and Elm.
 
 > When working with an event log, it is often useful to build snapshots of the working copy so that you don't have to process all the events from scratch every time you need a working copy. Indeed there is a duality here, we can look at the event log as either a list of changes, or as a list of states. We can derive one from the other. Version-control systems often mix **snapshots and deltas** in their event log in order to get the best performance.
 
+| Good | Bad |
+| :--- | :--- |
+| Much power on state management, eg. audit, debugging, historic state, alternative state, memory image | Replaying events are problematic when you have interactions with outside system. |
+|  | Complexity to the application which introduces subtle problems |
 
+## Command Query Responsibility Segregation
 
-We don't build event sourcing system a lot, but we use it everyday, eg. git, Rails DB migration, state management in Redux and Elm.
+![](/assets/command-query-responsibility-segregation.png)
+
+CQRS is about having separate data structures for reading and writing information. This seems a model which could help on the more complicated case for event based systems, cause there is no end for decoupling.
 
 
 
