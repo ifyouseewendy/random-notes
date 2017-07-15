@@ -1,5 +1,7 @@
 # Agile is Dead by Dave Thomas
 
+Reference
+
 * [GOTO 2015 • Agile is Dead • Pragmatic Dave Thomas](https://www.youtube.com/watch?v=a-BOSpxYJ9M) with [Slides](http://gotocon.com/dl/goto-amsterdam-2015/slides/DaveThomasPragmatic_EVENINGKEYNOTEAgileIsDead.pdf)
 * [Agile is Dead \(Long Live Agility\)](https://pragdave.me/blog/2014/03/04/time-to-kill-agile)
 
@@ -33,18 +35,14 @@ Agility is not about what you do, but how you do it.
 * You don’t work on an agile team - your team exhibits agility.
 * You don’t use agile tools - you use tools that enhance your agility.
 
-
-
 I really love the example Dave used here, the PID controller, proportional integral derivative. This is definitely the way we proceed.
 
 ![](/assets/PID-controller.png)
 
-Another note is 
+Another note is
 
 * No Rules Are Universal
 * All Rules Need Context
-
-
 
 
 

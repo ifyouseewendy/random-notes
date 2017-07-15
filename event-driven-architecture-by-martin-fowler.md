@@ -1,6 +1,6 @@
 # Event Driven Architecture by Martin Fowler
 
-Reference:
+Reference
 
 * [GOTO 2017 • The Many Meanings of Event-Driven Architecture • Martin Fowler](https://www.youtube.com/watch?v=STKCRSUsyP0)
 * [What do you mean by “Event-Driven”?](https://martinfowler.com/articles/201701-event-driven.html)
