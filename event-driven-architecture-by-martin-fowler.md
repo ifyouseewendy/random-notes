@@ -1,9 +1,11 @@
+# Event Driven Architecture by Martin Fowler
+
 Reference:
 
 * [GOTO 2017 • The Many Meanings of Event-Driven Architecture • Martin Fowler](https://www.youtube.com/watch?v=STKCRSUsyP0)
 * [What do you mean by “Event-Driven”?](https://martinfowler.com/articles/201701-event-driven.html)
 * [Bliki - CQRS](https://martinfowler.com/bliki/CQRS.html)
-* [Event Architectures](https://martinfowler.com/tags/event%20architectures.html)
+* [Event Architectures](https://martinfowler.com/tags/event architectures.html)
 
 ## Event Notification
 
@@ -49,6 +51,4 @@ Event sourcing is a system or thought that we employ events or logs to record th
 ![](/assets/command-query-responsibility-segregation.png)
 
 CQRS is about having separate data structures for reading and writing information. This seems a model which could help on the more complicated case for event based systems, cause there is no end for decoupling.
-
-
 
