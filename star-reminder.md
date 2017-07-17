@@ -4,11 +4,11 @@
 
 As normal, I go to the office when I don't have something to do. I was reading email subscriptions and surfing online. I was referred to a Github repo about all kinds of free ebooks. I wanted to give it a star, but clearly "Unstar" button showed that I've already starred the project sometime before. It happens sometimes. Therefore, I'm wondering why not to create a service to give me a digest of starred projects every day, to refresh my memory and dig into one or two projects every once a while.
 
-Here comes the idea. I would love to define the MVP as: 
+Here comes the idea. I would love to define the MVP as:
 
 * A service to email me a digest of 3 starred Github projects at 9am every day. \#v0.1
 
-To make it further, it could be: 
+To make it further, it could be:
 
 * A service to email user a digest of {2,3,5} starred Github projects at {9am, 4pm} every {day, week}. \#v1
 
@@ -24,11 +24,11 @@ A script which can
 2. generate a digest consisting of {name, link, description\)
 3. send me an email every day
 
+Notes:
 
-
-
-
-
+1. I'll make a Ruby version first, then migrate to a JS version.
+2. [Github uses GraphQL as their v4 API](https://githubengineering.com/the-github-graphql-api/). They also released the [graphql-client](https://github.com/github/graphql-client) gem which I could play with.
+3. Set up a [backlog](https://www.pivotaltracker.com/epic/show/3663447) for Star Reminder
 
 
 
