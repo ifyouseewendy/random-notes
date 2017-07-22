@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* [YDKJS - this & object prototypes](ydkjs-this-and-object-prototypes.md)
+* [YDKJS - this & object prototypes](YDKJS - this & object prototypes/README.md)
   * [Objects](YDKJS - this & object prototypes/objects.md)
   * ["Class"](YDKJS - this & object prototypes/class.md)
   * [Prototypes](YDKJS - this & object prototypes/prototypes.md)
@@ -10,6 +10,4 @@
 * [Agile is Dead by Dave Thomas](agile-is-dead-by-dave-thomas.md)
 * [Star Reminder](star-reminder.md)
 * [Into Docker](into-docker.md)
-
-
 
