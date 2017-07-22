@@ -2,7 +2,7 @@
 
 for thoughts and \#TILs.
 
-2017-07-03: [You Don't Know JS: this & Object Prototypes](/YDKJS - this & object prototypes/README.md)
+2017-07-03: [You Don't Know JS: this & Object Prototypes](/YDKJS - this & object prototypes/)
 
 2017-07-10: [Event Driven Architecture by Martin Fowler](/event-driven-architecture-by-martin-fowler.md)
 
