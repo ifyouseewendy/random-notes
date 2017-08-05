@@ -10,4 +10,5 @@
 * [Agile is Dead by Dave Thomas](agile-is-dead-by-dave-thomas.md)
 * [Star Reminder](star-reminder.md)
 * [Into Docker](into-docker.md)
+* [Pluming Event Machine](pluming-event-machine.md)
 
