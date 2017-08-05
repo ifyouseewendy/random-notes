@@ -11,7 +11,7 @@ Reference
 * Process multiple I/O “at once” without the need for threads.
 * Register callbacks to respond to events
 
-![](/assets/1D9AECDE-4E6F-4637-A487-B448B472E3FD.png)
+![](/assets/non-blocking-io.png)
 
 This is the event loop:
 
@@ -53,7 +53,7 @@ It runs the block you passed in a background thread. If you have long running co
 
 “I/O in the main reactor thread, and anything that’s potentially slow in the deferred thread. If you are not sure, wrap it in a `EM.next_tick` or a `EM.defer` block”.
 
-![](/assets/eventmachine-in-practice.png)
+![](/assets/em-in-practice.png)
 
 Demo 1: Running operations in deferred threads and callbacks in the main loop, which means IO can block deferred threads.
 
