@@ -12,5 +12,5 @@ for thoughts and \#TILs.
 
 2017-07-22: [Into Docker](/into-docker.md)
 
-2017-08-05: [Pluming Event Machine](/pluming-event-machine.md)
+2017-08-05: [Plumbing Event Machine](/pluming-event-machine.md)
 
