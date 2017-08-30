@@ -181,6 +181,33 @@ Promise.rb is a thin wrapper on `Em.defer`. It helps us avoid passing callbacks 
 
 No, the `EM.next_tick` method Promise.rb uses is called to transfer the control to main loop to run the callback.
 
+`Promise#then` has an interesting method signature, which enables
+
+1. `Promise.new( proc {}, proc {} )`
+2.  `Promise.new { }`
+3.   the `rescue` or `catch`
+
+```ruby
+class Promise
+  def then(on_fulfill = nil, on_reject = nil, &block)
+    on_fulfill ||= block
+    ...
+  end
+  
+  def rescue(&block)
+    self.then(nil, block)
+  end
+  alias_method :catch, :rescue
+```
+
+With Promise enabled, we could write code like
+
+```ruby
+EM.defer(operation, callback, errback);
+
+EM.promise_defer(&operation).then(&callback).catch(&errback)
+```
+
 ### Concerns
 
 1. Exception handling
